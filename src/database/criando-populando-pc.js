@@ -10,7 +10,10 @@ CREATE TABLE IF NOT EXISTS "PEDIDO_CLIENTE" (
     "id_cliente" int, 
     "id_produto" int, 
     "produto" String VarChar(36),
-    "quantidade" Int    
+    "quantidade" Int,    
+    FOREIGN KEY(id_pedido) REFERENCES PEDIDO(id_pedido),
+    FOREIGN KEY(id_cliente) REFERENCES CLIENTE(id_cliente),
+    FOREIGN KEY(id_produto) REFERENCES PRODUTO(id_produto)
 );`;
 
 
