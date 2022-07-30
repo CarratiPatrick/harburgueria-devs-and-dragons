@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "PEDIDO_CLIENTE" (
 );`;
 
 
-function criaTabelaProdutos() {
+function criaTabelaPedidoCliente() {
     db.run(PEDIDO_CLIENTE_SCHEMA, (error)=>{
         if(error){
             console.log("Erro ao criar a tabela PEDIDO_CLIENTE")
@@ -32,4 +32,5 @@ function populaTabelaPedidoCliente() {
 
 db.serialize(()=>{
     criaTabelaProdutos()
+    populaTabelaPedidoCliente()
 })
