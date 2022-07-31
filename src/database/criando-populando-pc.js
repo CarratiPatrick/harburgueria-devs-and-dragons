@@ -5,7 +5,7 @@ const db = new sqlite3.Database('devs-and-dragons.db');
 
 const PEDIDO_CLIENTE_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "PEDIDO_CLIENTE" (
-    "id_pedido_cliente" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "id_pedido" int, 
     "id_cliente" int, 
     "id_produto" int, 
