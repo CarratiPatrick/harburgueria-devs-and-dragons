@@ -1,6 +1,6 @@
 import express from 'express'
 
-import produtoController from './controller/pedido-cliente-controller.js'
+import pedidoClienteController from './controller/pedido-cliente-controller.js'
 
 
 const app = express()

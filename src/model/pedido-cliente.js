@@ -6,7 +6,7 @@ const pedidoClienteModel = {
     },
 
     pegaPedidoCliente : async () => {
-        return await daoPedidoCliente.pegaPedidoCliente()
+        return await daoPedidoCliente.pegaTodosPedidoCliente()
     },
     pegaPedidoClienteById : async (id) => {
         return await daoPedidoCliente.pegaPedidoClienteById(id)

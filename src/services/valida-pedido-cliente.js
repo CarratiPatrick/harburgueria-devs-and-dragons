@@ -50,3 +50,4 @@ export const criaPedidoCliente = (idPedido, idCliente, produto, qnt,) =>{
         "produto": produto,
         "quantidade": qnt
     }
+}
