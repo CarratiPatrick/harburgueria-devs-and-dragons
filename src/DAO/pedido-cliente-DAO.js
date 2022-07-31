@@ -1,11 +1,11 @@
 import db from "../database/conect.js"
 
-const daoClientePedido = {
+const daoPedidoCliente = {
     
-    pegaTodosClientePedido : () =>{
-        const pegaClientePedido = 'SELECT * FROM PEDIDO_CLIENTE'
+    pegaTodosPedidoCliente : () =>{
+        const pegaPedidoCliente = 'SELECT * FROM PEDIDO_CLIENTE'
         return new Promise((resolve, reject)=>{
-            db.all(pegaClientePedido, (error, row)=>{
+            db.all(pegaPedidoCliente, (error, row)=>{
                 if (error){
                     reject(error)
                 } else {
@@ -15,11 +15,24 @@ const daoClientePedido = {
         })
     },
 
-    pegaClientePedidoById : (idClientePedido) => {
-        const pegaClientePedidoID = 'SELECT * FROM PEDIDO_CLIENTE WHERE id_cliente_pedido = ?'
+    pegaPedidoClienteById : (id) => {
+        const pegaPedidoClienteID = 'SELECT * FROM PEDIDO_CLIENTE WHERE id = ?'
 
         return new Promise((resolve, reject)=>{
-            db.get(pegaClientePedidoID, idClientePedido, (error, row)=>{
+            db.get(pegaPedidoClienteID, id, (error, row)=>{
+                if(error){
+                    reject(error)
+                } else {
+                    resolve (row)
+                }
+            })
+        })
+    },
+    pegaPedidoClienteByIdPedido : (idPedido) => {
+        const pegaPedidoCliente = 'SELECT * FROM PEDIDO_CLIENTE WHERE id_pedido = ?'
+
+        return new Promise((resolve, reject)=>{
+            db.all(pegaPedidoCliente, idPedido, (error, row)=>{
                 if(error){
                     reject(error)
                 } else {
@@ -29,11 +42,11 @@ const daoClientePedido = {
         })
     },
 
-    pegaClientePedidoByIdCliente : (idCliente) => {
-        const pegaClienteId = 'SELECT * FROM PEDIDO_CLIENTE WHERE id_cliente = ?'
+    pegaPedidoClienteByIdCliente : (idCliente) => {
+        const pegaPedidoClienteId = 'SELECT * FROM PEDIDO_CLIENTE WHERE id_cliente = ?'
 
         return new Promise((resolve, reject)=>{
-            db.all(pegaClienteId, idCliente, (error, row)=>{
+            db.all(pegaPedidoClienteId, idCliente, (error, row)=>{
                 if(error){
                     reject(error)
                 } else {
@@ -43,25 +56,12 @@ const daoClientePedido = {
         })
     },
 
-    pegaClientePedidoByIdPedido : (idPedido) => {
-        const pegaPedidoId = 'SELECT * FROM PEDIDO_CLIENTE WHERE id_pedido = ?'
+
+    pegaPedidoClienteByProduto : (produto) => {
+        const pegaPedidoClienteProduto = 'SELECT * FROM PEDIDO_CLIENTE WHERE produto = ?'
 
         return new Promise((resolve, reject)=>{
-            db.all(pegaPedidoId, idPedido, (error, row)=>{
-                if(error){
-                    reject(error)
-                } else {
-                    resolve (row)
-                }
-            })
-        })
-    },
-
-    pegaClientePedidoByProduto : (produto) => {
-        const pegaProduto = 'SELECT * FROM PEDIDO_CLIENTE WHERE produto = ?'
-
-        return new Promise((resolve, reject)=>{
-            db.all(pegaProduto, produto, (error, row)=>{
+            db.all(pegaPedidoClienteProduto, produto, (error, row)=>{
                 if(error){
                     reject(error)
                 } else {
@@ -73,11 +73,11 @@ const daoClientePedido = {
 
     inserePedidoCliente : (pedidoCliente)=>{
         const inserePedidoCliente = `
-        INSERT INTO PEDIDO_CLIENTE (id_cliente, id_pedido, produto, quantidade)
+        INSERT INTO PEDIDO_CLIENTE (id_pedido, id_cliente, produto, quantidade)
         VALUES (?, ?, ?, ?)
         `
         return new Promise((resolve, reject)=>{
-            db.run(inserePedidoCliente, pedidoCliente.id_cliente,pedidoCliente.id_pedido, pedidoCliente.produto, pedidoCliente.quantidade,
+            db.run(inserePedidoCliente, pedidoCliente.id_pedido, pedidoCliente.id_cliente, pedidoCliente.produto, pedidoCliente.quantidade,
                                 (error)=>{
                     if(error){
                         reject(error)
@@ -119,4 +119,4 @@ const daoClientePedido = {
     }
 }
 
-export default daoClientePedido
+export default daoPedidoCliente
